@@ -1,6 +1,14 @@
-export { auth as middleware } from "@/utils/auth";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-// Read more: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+export function middleware(request: NextRequest) {
+  return NextResponse.next();
+}
+
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/dashboard/:path*",
+    "/admin/:path*",
+    "/chat/:path*",
+  ],
 };
