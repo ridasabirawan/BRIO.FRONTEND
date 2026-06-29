@@ -1,0 +1,121 @@
+"use client";
+import { TITLE_TAILWIND_CLASS } from "@/utils/constants";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  Bolt,
+  BarChart,
+  Palette,
+  Scroll,
+  Globe2,
+  ShieldCheck,
+} from "lucide-react"; // Relevant lucide-react icons
+
+const FeaturesData = [
+  {
+    id: 1,
+    name: "Lightning Fast",
+    description:
+      "Instant responses from the chatbot so you don't leave your users waiting.",
+    icon: Bolt,
+    url: "#",
+  },
+  {
+    id: 2,
+    name: "Analytics and Reports",
+    description:
+      "Robust analytics and reporting tools that enable you to monitor your agent's performance and make data-driven decisions.",
+    icon: BarChart,
+    url: "#",
+  },
+  {
+    id: 3,
+    name: "Customizable",
+    description:
+      "Fully customizable agent with your own branding, colors, and design elements to create a seamless user experience.",
+    icon: Palette,
+    url: "#",
+  },
+  {
+    id: 4,
+    name: "Chat Logs",
+    description:
+      "Keep track of your agent's interactions with detailed chat logs.",
+    icon: Scroll,
+    url: "#",
+  },
+  {
+    id: 5,
+    name: "Integration",
+    description:
+      "Easily integrate our chatbot into your website using a simple script tag for seamless functionality.",
+    icon: Globe2,
+    url: "#", // Replace with actual integration URL
+  },
+  {
+    id: 6,
+    name: "Secure",
+    description:
+      "Your data is only accessible to you and not given to any third parties, giving you peace of mind.",
+    icon: ShieldCheck,
+    url: "#",
+  },
+];
+
+const SpringAnimatedFeatures = () => {
+  return (
+    <div className="flex flex-col justify-center items-center w-full px-4 sm:px-6 lg:px-8 lg:w-[75%]">
+      <div className="flex flex-col mb-8 sm:mb-12">
+        <h2
+          className={`${TITLE_TAILWIND_CLASS} mt-2 font-semibold tracking-tight dark:text-white text-gray-900 text-center`}
+        >
+          See How Our AI Chatbots Can Benefit You
+        </h2>
+        <p className="mx-auto max-w-[500px] text-gray-600 dark:text-gray-400 text-center mt-2 text-sm sm:text-base">
+          {`We've built a platform that is easy to use and has all the features
+          you need to build the best agent.`}
+        </p>
+      </div>
+      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {FeaturesData.map((feature, index) => {
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={{
+                y: -8,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              key={feature.id}
+              className="glow-card group mt-5 text-left border p-4 sm:p-6 rounded-xl bg-white/60 dark:bg-black/60 backdrop-blur-sm"
+            >
+              <Link
+                href={feature?.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/15 to-indigo-500/15 text-purple-600 transition-transform duration-300 group-hover:scale-110 dark:text-purple-300">
+                  <feature.icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                </div>
+                <div className="mb-1 text-sm sm:text-base font-medium ">
+                  {feature.name}
+                </div>
+                <div className="text-xs sm:text-sm font-normal text-gray-600 dark:text-gray-400">
+                  {feature.description}
+                </div>
+              </Link>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default SpringAnimatedFeatures;

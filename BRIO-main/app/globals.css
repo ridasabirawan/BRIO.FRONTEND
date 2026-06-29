@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  #pricing {
+    scroll-margin-top: 100px;
+    /* Adjust this value as needed */
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  /* Clean, modern purple gradient (no full-page illustration). The galaxy /
+     jellyfish artwork is now confined to the landing hero section. The animated
+     jellyfish + glowing bubbles (AnimatedBackground) still float on top. */
+  background-color: #f6f3ff;
+  background-image: linear-gradient(160deg, #faf7ff 0%, #f1e9ff 45%, #e9e2fb 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+html.dark {
+  background-color: #07050d;
+  background-image: linear-gradient(160deg, #0c0717 0%, #190a2e 48%, #060209 100%);
+}
+
+body {
+  background-color: transparent !important;
+}
+
+body {
+  pointer-events: auto !important;
+}
+
+[data-vaul-drawer-wrapper] {
+  pointer-events: auto !important;
+}
+
+/* =====================================================================
+   BRIO.CHAT — Premium SaaS animation layer
+   Animated glowing backgrounds, floating bubbles & jellyfish,
+   interactive glow, animated gradients and lighting effects.
+   ===================================================================== */
+
+/* ---------- Animated aurora / glow blobs ---------- */
+@keyframes aurora-drift-1 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(6vw, 4vh, 0) scale(1.15); }
+  66%  { transform: translate3d(-4vw, -3vh, 0) scale(0.92); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes aurora-drift-2 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-7vw, 5vh, 0) scale(1.2); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes aurora-drift-3 {
+  0%   { transform: translate3d(0, 0, 0) scale(0.95); }
+  40%  { transform: translate3d(5vw, -4vh, 0) scale(1.1); }
+  80%  { transform: translate3d(-3vw, 3vh, 0) scale(1); }
+  100% { transform: translate3d(0, 0, 0) scale(0.95); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.85; }
+}
+
+/* ---------- Floating bubbles ---------- */
+@keyframes bubble-rise {
+  0%   { transform: translateY(0) translateX(0) scale(0.9); opacity: 0; }
+  10%  { opacity: var(--bubble-opacity, 0.5); }
+  50%  { transform: translateY(-52vh) translateX(var(--bubble-sway, 20px)) scale(1); }
+  90%  { opacity: var(--bubble-opacity, 0.5); }
+  100% { transform: translateY(-105vh) translateX(0) scale(1.05); opacity: 0; }
+}
+
+/* ---------- Floating jellyfish ---------- */
+@keyframes jelly-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-22px) rotate(2deg); }
+}
+
+@keyframes tentacle-sway {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50%      { transform: translateX(3px) scaleY(1.06); }
+}
+
+/* ---------- Subtle floating for accent elements ---------- */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* ---------- Animated gradient text ---------- */
+@keyframes text-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ---------- Shimmer for skeletons ---------- */
+@keyframes skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* =====================================================================
+   Utility classes
+   ===================================================================== */
+
+.animate-aurora-1 { animation: aurora-drift-1 24s ease-in-out infinite; }
+.animate-aurora-2 { animation: aurora-drift-2 32s ease-in-out infinite; }
+.animate-aurora-3 { animation: aurora-drift-3 28s ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 8s ease-in-out infinite; }
+.animate-bubble { animation: bubble-rise linear infinite; }
+.animate-tentacle { animation: tentacle-sway 4s ease-in-out infinite; transform-origin: top center; }
+.animate-float-soft { animation: float-soft 6s ease-in-out infinite; }
+
+/* Interactive glow on hover for buttons / interactive elements */
+.glow-hover {
+  transition: box-shadow 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+.glow-hover:hover {
+  box-shadow: 0 0 0 1px hsl(270 90% 65% / 0.4), 0 8px 30px -6px hsl(270 90% 60% / 0.55);
+  transform: translateY(-2px);
+}
+
+/* Premium glow card — animated conic border glow on hover */
+.glow-card {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--glow-angle, 0deg), transparent 0deg, hsl(270 90% 65% / 0.9) 90deg, hsl(200 90% 60% / 0.9) 180deg, transparent 270deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.glow-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px -12px hsl(270 80% 50% / 0.45);
+}
+.glow-card:hover::before { opacity: 1; }
+
+/* Animated gradient text */
+.text-gradient-animated {
+  background: linear-gradient(90deg, #8a2be2, #4f46e5, #06b6d4, #8a2be2);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: text-gradient-shift 6s ease infinite;
+}
+
+/* Skeleton shimmer overlay */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(270 60% 70% / 0.12),
+    transparent
+  );
+  animation: skeleton-shimmer 1.6s infinite;
+}
+
+/* =====================================================================
+   Accessibility — honor reduced motion preference
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora-1,
+  .animate-aurora-2,
+  .animate-aurora-3,
+  .animate-glow-pulse,
+  .animate-bubble,
+  .animate-tentacle,
+  .animate-float-soft,
+  .text-gradient-animated,
+  .skeleton-shimmer::after {
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+}

@@ -1,0 +1,83 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1732058884417,
+      "tag": "0000_graceful_jetstream",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1732070863868,
+      "tag": "0001_naive_sabra",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1732425821351,
+      "tag": "0002_marvelous_spyke",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1732498667236,
+      "tag": "0003_overrated_scarlet_spider",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1732544519441,
+      "tag": "0004_fuzzy_black_cat",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1732545671028,
+      "tag": "0005_careful_blade",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1732546118051,
+      "tag": "0006_small_zuras",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1732623386531,
+      "tag": "0007_slimy_rawhide_kid",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1732714001953,
+      "tag": "0008_tidy_scream",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1733928927107,
+      "tag": "0009_regular_living_lightning",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1733961373601,
+      "tag": "0010_confused_imperial_guard",
+      "breakpoints": true
+    }
+  ]
+}

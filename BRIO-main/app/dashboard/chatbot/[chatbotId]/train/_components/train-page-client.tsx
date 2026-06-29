@@ -1,0 +1,104 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Loader } from "lucide-react";
+import PDFUploadDialog from "./pdf-dialog";
+import URLInputDialog from "./url-input-dialog";
+import TXTUploadDialog from "./txt-upload-dialog";
+import CustomTextDialog from "./custom-text-dialog";
+import DocumentUploadDialog from "./document-upload-dialog";
+import CSVUploadDialog from "./csv-upload-dialog";
+import { columns } from "./columns";
+import { DataTableWithFeatures } from "./data-table-with-features";
+import { KBSource } from "@/types/kb-source";
+import { getKbSources } from "@/drizzle/queries/select";
+import ImageUploadDialog from "./image-upload-dialog";
+import PPTXUploadDialog from "./pptx-upload-dialog";
+import YoutubeInputDialog from "./youtube-input-dialog";
+import SitemapInputDialog from "./sitemap-input-dialog";
+
+export default function TrainPageClient({
+  params,
+}: {
+  params: { chatbotId: string };
+}) {
+  const { data: sources = [], isLoading } = useQuery({
+    queryKey: ["sources", params.chatbotId],
+    queryFn: async () => {
+      const sources = await getKbSources(params.chatbotId);
+      return sources;
+    },
+    // Live status: while any source is still processing, poll every 4s so the
+    // table moves from "processing" → "completed"/"failed" without a refresh.
+    refetchInterval: (query) => {
+      const data = query.state.data as { status?: string }[] | undefined;
+      return data?.some((s) => s.status === "processing") ? 4000 : false;
+    },
+  });
+
+  return (
+    <div className="flex flex-col justify-start items-start px-4 pt-5 gap-4 w-full">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 w-full border-b pb-4">
+        <h2 className="mt-6 sm:mt-0 scroll-m-20 text-2xl sm:text-3xl font-semibold tracking-tight transition-colors">
+          Train Your Chatbot
+        </h2>
+      </div>
+      {isLoading ? (
+        <div className="w-full flex items-center justify-center">
+          <Loader className="h-6 w-6 animate-spin text-muted-foreground" />
+        </div>
+      ) : (
+        <>
+          <h3 className="text-base md:text-lg font-medium text-muted-foreground">
+            Choose a source of data to add to your bot:
+          </h3>
+          <div className="flex flex-wrap gap-4">
+            <PDFUploadDialog />
+            <URLInputDialog />
+            <SitemapInputDialog />
+            <TXTUploadDialog />
+            <CustomTextDialog />
+            <DocumentUploadDialog />
+            <CSVUploadDialog />
+            <PPTXUploadDialog />
+            <ImageUploadDialog />
+            {/* <YoutubeInputDialog /> */}
+          </div>
+          <div className="w-full mt-8">
+            <div className="flex items-center space-x-2 border-b pb-4">
+              <span className="relative flex h-3 w-3">
+                {sources.length > 0 ? (
+                  <>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </>
+                ) : (
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-gray-300"></span>
+                )}
+              </span>
+              <span className="text-sm text-muted-foreground font-medium ml-2">
+                {sources.length > 0 ? (
+                  <>
+                    {
+                      sources.filter((source) => source.status === "completed")
+                        .length
+                    }{" "}
+                    of {sources.length} data sources completed
+                  </>
+                ) : (
+                  "No data sources yet"
+                )}
+              </span>
+            </div>
+
+            <DataTableWithFeatures<KBSource>
+              columns={columns}
+              data={sources as KBSource[]}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
