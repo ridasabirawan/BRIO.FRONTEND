@@ -4,8 +4,8 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+//import "@react-pdf-viewer/core/lib/styles/index.css";
+//import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import type {
   ToolbarSlot,
   TransformToolbarSlot,
@@ -123,8 +123,8 @@ export default function DocumentClient({
       const isAtBottom =
         Math.abs(
           scrollArea.scrollHeight -
-            scrollArea.scrollTop -
-            scrollArea.clientHeight
+          scrollArea.scrollTop -
+          scrollArea.clientHeight
         ) < 50;
       setShowScrollButton(!isAtBottom);
     };
@@ -185,16 +185,14 @@ export default function DocumentClient({
                 messages.map((message, index) => (
                   <div
                     key={`chatMessage-${index}`}
-                    className={`mb-4 ${
-                      message.role === "user" ? "ml-12" : "mr-12"
-                    }`}
+                    className={`mb-4 ${message.role === "user" ? "ml-12" : "mr-12"
+                      }`}
                   >
                     <div
-                      className={`flex items-start gap-3 ${
-                        message.role === "user"
-                          ? "flex-row-reverse"
-                          : "flex-row"
-                      }`}
+                      className={`flex items-start gap-3 ${message.role === "user"
+                        ? "flex-row-reverse"
+                        : "flex-row"
+                        }`}
                     >
                       {message.role === "user" ? (
                         <Avatar>
@@ -212,11 +210,10 @@ export default function DocumentClient({
                         </Avatar>
                       )}
                       <div
-                        className={`p-3 rounded-lg ${
-                          message.role === "user"
-                            ? "bg-purple-500 text-primary-foreground"
-                            : "bg-secondary text-secondary-foreground"
-                        }`}
+                        className={`p-3 rounded-lg ${message.role === "user"
+                          ? "bg-purple-500 text-primary-foreground"
+                          : "bg-secondary text-secondary-foreground"
+                          }`}
                       >
                         <ReactMarkdown
                           components={{

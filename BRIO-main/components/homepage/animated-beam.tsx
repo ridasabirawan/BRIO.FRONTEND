@@ -1,11 +1,11 @@
 "use client";
 
 import React, { forwardRef, useRef } from "react";
+import Image from "next/image";
+import { Type, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "../ui/animated-beam";
-import Image from "next/image";
-import { Type, User } from "lucide-react";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -32,6 +32,7 @@ export function AnimatedBeamMultipleOutputDemo({
   className?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+
   const div1Ref = useRef<HTMLDivElement>(null);
   const div2Ref = useRef<HTMLDivElement>(null);
   const div3Ref = useRef<HTMLDivElement>(null);
@@ -42,30 +43,35 @@ export function AnimatedBeamMultipleOutputDemo({
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative flex h-[350px] w-full items-center justify-center overflow-hidden mb-[2rem] z-10",
         className
       )}
-      ref={containerRef}
     >
       <div className="flex size-full flex-row items-stretch justify-between gap-10 max-w-xl">
         <div className="flex flex-col justify-center gap-2">
           <Circle ref={div1Ref}>
             <Icons.pdf />
           </Circle>
+
           <Circle ref={div2Ref}>
             <Icons.googleDocs />
           </Circle>
+
           <Circle ref={div3Ref}>
             <Icons.www />
           </Circle>
+
           <Circle ref={div4Ref}>
             <Icons.csv />
           </Circle>
+
           <Circle ref={div5Ref}>
             <Icons.text />
           </Circle>
         </div>
+
         <div className="flex flex-col justify-center">
           <Circle ref={div6Ref} className="size-16">
             <Image
@@ -76,6 +82,7 @@ export function AnimatedBeamMultipleOutputDemo({
             />
           </Circle>
         </div>
+
         <div className="flex flex-col justify-center">
           <Circle ref={div7Ref}>
             <Icons.user />
@@ -84,34 +91,39 @@ export function AnimatedBeamMultipleOutputDemo({
       </div>
 
       <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div1Ref}
-        toRef={div6Ref}
+        containerRef={containerRef as React.RefObject<HTMLElement>}
+        fromRef={div1Ref as React.RefObject<HTMLElement>}
+        toRef={div6Ref as React.RefObject<HTMLElement>}
       />
+
       <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div2Ref}
-        toRef={div6Ref}
+        containerRef={containerRef as React.RefObject<HTMLElement>}
+        fromRef={div2Ref as React.RefObject<HTMLElement>}
+        toRef={div6Ref as React.RefObject<HTMLElement>}
       />
+
       <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div3Ref}
-        toRef={div6Ref}
+        containerRef={containerRef as React.RefObject<HTMLElement>}
+        fromRef={div3Ref as React.RefObject<HTMLElement>}
+        toRef={div6Ref as React.RefObject<HTMLElement>}
       />
+
       <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div4Ref}
-        toRef={div6Ref}
+        containerRef={containerRef as React.RefObject<HTMLElement>}
+        fromRef={div4Ref as React.RefObject<HTMLElement>}
+        toRef={div6Ref as React.RefObject<HTMLElement>}
       />
+
       <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div5Ref}
-        toRef={div6Ref}
+        containerRef={containerRef as React.RefObject<HTMLElement>}
+        fromRef={div5Ref as React.RefObject<HTMLElement>}
+        toRef={div6Ref as React.RefObject<HTMLElement>}
       />
+
       <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div6Ref}
-        toRef={div7Ref}
+        containerRef={containerRef as React.RefObject<HTMLElement>}
+        fromRef={div6Ref as React.RefObject<HTMLElement>}
+        toRef={div7Ref as React.RefObject<HTMLElement>}
       />
     </div>
   );
@@ -124,200 +136,43 @@ const Icons = {
       alt="PDF"
       width={100}
       height={100}
-      layout="responsive"
+      className="h-full w-full"
     />
   ),
+
   www: () => (
     <Image
       src="/www.png"
-      alt="PDF"
+      alt="Website"
       width={100}
       height={100}
-      className="w-full h-full"
+      className="h-full w-full"
     />
   ),
+
   googleDocs: () => (
     <svg
       viewBox="0 0 47 65"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
+      className="h-full w-full"
     >
-      <defs>
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-1"
-        />
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-3"
-        />
-        <linearGradient
-          x1="50.0053945%"
-          y1="8.58610612%"
-          x2="50.0053945%"
-          y2="100.013939%"
-          id="linearGradient-5"
-        >
-          <stop stopColor="#1A237E" stopOpacity="0.2" offset="0%" />
-          <stop stopColor="#1A237E" stopOpacity="0.02" offset="100%" />
-        </linearGradient>
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-6"
-        />
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-8"
-        />
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-10"
-        />
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-12"
-        />
-        <path
-          d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-          id="path-14"
-        />
-        <radialGradient
-          cx="3.16804688%"
-          cy="2.71744318%"
-          fx="3.16804688%"
-          fy="2.71744318%"
-          r="161.248516%"
-          gradientTransform="translate(0.031680,0.027174),scale(1.000000,0.723077),translate(-0.031680,-0.027174)"
-          id="radialGradient-16"
-        >
-          <stop stopColor="#FFFFFF" stopOpacity="0.1" offset="0%" />
-          <stop stopColor="#FFFFFF" stopOpacity="0" offset="100%" />
-        </radialGradient>
-      </defs>
-      <g
-        id="Page-1"
-        stroke="none"
-        strokeWidth="1"
-        fill="none"
-        fillRule="evenodd"
-      >
-        <g transform="translate(-451.000000, -463.000000)">
-          <g id="Hero" transform="translate(0.000000, 63.000000)">
-            <g id="Personal" transform="translate(277.000000, 309.000000)">
-              <g id="Docs-icon" transform="translate(174.000000, 91.000000)">
-                <g id="Group">
-                  <g id="Clipped">
-                    <mask id="mask-2" fill="white">
-                      <use xlinkHref="#path-1" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <path
-                      d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L36.71875,10.3409091 L29.375,0 Z"
-                      id="Path"
-                      fill="#4285F4"
-                      fillRule="nonzero"
-                      mask="url(#mask-2)"
-                    />
-                  </g>
-                  <g id="Clipped">
-                    <mask id="mask-4" fill="white">
-                      <use xlinkHref="#path-3" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <polygon
-                      id="Path"
-                      fill="url(#linearGradient-5)"
-                      fillRule="nonzero"
-                      mask="url(#mask-4)"
-                      points="30.6638281 16.4309659 47 32.8582386 47 17.7272727"
-                    ></polygon>
-                  </g>
-                  <g id="Clipped">
-                    <mask id="mask-7" fill="white">
-                      <use xlinkHref="#path-6" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <path
-                      d="M11.75,47.2727273 L35.25,47.2727273 L35.25,44.3181818 L11.75,44.3181818 L11.75,47.2727273 Z M11.75,53.1818182 L29.375,53.1818182 L29.375,50.2272727 L11.75,50.2272727 L11.75,53.1818182 Z M11.75,32.5 L11.75,35.4545455 L35.25,35.4545455 L35.25,32.5 L11.75,32.5 Z M11.75,41.3636364 L35.25,41.3636364 L35.25,38.4090909 L11.75,38.4090909 L11.75,41.3636364 Z"
-                      id="Shape"
-                      fill="#F1F1F1"
-                      fillRule="nonzero"
-                      mask="url(#mask-7)"
-                    />
-                  </g>
-                  <g id="Clipped">
-                    <mask id="mask-9" fill="white">
-                      <use xlinkHref="#path-8" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <g id="Group" mask="url(#mask-9)">
-                      <g transform="translate(26.437500, -2.954545)">
-                        <path
-                          d="M2.9375,2.95454545 L2.9375,16.25 C2.9375,18.6985795 4.90929688,20.6818182 7.34375,20.6818182 L20.5625,20.6818182 L2.9375,2.95454545 Z"
-                          id="Path"
-                          fill="#A1C2FA"
-                          fillRule="nonzero"
-                        />
-                      </g>
-                    </g>
-                  </g>
-                  <g id="Clipped">
-                    <mask id="mask-11" fill="white">
-                      <use xlinkHref="#path-10" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <path
-                      d="M4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,4.80113636 C0,2.36363636 1.9828125,0.369318182 4.40625,0.369318182 L29.375,0.369318182 L29.375,0 L4.40625,0 Z"
-                      id="Path"
-                      fillOpacity="0.2"
-                      fill="#FFFFFF"
-                      fillRule="nonzero"
-                      mask="url(#mask-11)"
-                    />
-                  </g>
-                  <g id="Clipped">
-                    <mask id="mask-13" fill="white">
-                      <use xlinkHref="#path-12" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <path
-                      d="M42.59375,64.6306818 L4.40625,64.6306818 C1.9828125,64.6306818 0,62.6363636 0,60.1988636 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,60.1988636 C47,62.6363636 45.0171875,64.6306818 42.59375,64.6306818 Z"
-                      id="Path"
-                      fillOpacity="0.2"
-                      fill="#1A237E"
-                      fillRule="nonzero"
-                      mask="url(#mask-13)"
-                    />
-                  </g>
-                  <g id="Clipped">
-                    <mask id="mask-15" fill="white">
-                      <use xlinkHref="#path-14" />
-                    </mask>
-                    <g id="SVGID_1_" />
-                    <path
-                      d="M33.78125,17.7272727 C31.3467969,17.7272727 29.375,15.7440341 29.375,13.2954545 L29.375,13.6647727 C29.375,16.1133523 31.3467969,18.0965909 33.78125,18.0965909 L47,18.0965909 L47,17.7272727 L33.78125,17.7272727 Z"
-                      id="Path"
-                      fillOpacity="0.1"
-                      fill="#1A237E"
-                      fillRule="nonzero"
-                      mask="url(#mask-15)"
-                    />
-                  </g>
-                </g>
-                <path
-                  d="M29.375,0 L4.40625,0 C1.9828125,0 0,1.99431818 0,4.43181818 L0,60.5681818 C0,63.0056818 1.9828125,65 4.40625,65 L42.59375,65 C45.0171875,65 47,63.0056818 47,60.5681818 L47,17.7272727 L29.375,0 Z"
-                  id="Path"
-                  fill="url(#radialGradient-16)"
-                  fillRule="nonzero"
-                />
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
+      <path
+        d="M29.375 0H4.406C1.983 0 0 1.994 0 4.432v56.136C0 63.006 1.983 65 4.406 65h38.188C45.017 65 47 63.006 47 60.568V17.727L29.375 0Z"
+        fill="#4285F4"
+      />
+      <path
+        d="M29.375 0v13.295c0 2.449 1.972 4.432 4.406 4.432H47L29.375 0Z"
+        fill="#A1C2FA"
+      />
+      <path
+        d="M11.75 32.5h23.5v2.955h-23.5V32.5Zm0 5.91h23.5v2.954h-23.5V38.41Zm0 5.908h23.5v2.955h-23.5v-2.955Zm0 5.91h17.625v2.954H11.75v-2.954Z"
+        fill="#F1F1F1"
+      />
     </svg>
   ),
+
   text: () => <Type className="text-purple-600" />,
+
   csv: () => (
     <Image
       src="/csv.png"
@@ -327,5 +182,6 @@ const Icons = {
       className="h-7 w-5"
     />
   ),
+
   user: () => <User />,
 };
