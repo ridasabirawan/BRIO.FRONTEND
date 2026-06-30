@@ -48,11 +48,29 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
             opacity: 0.25 !important;
             cursor: not-allowed !important;
           }
+          
+          /* Strict SVG icon overrides to force white paths/shapes */
           .rpv-core__button svg {
-            fill: currentColor !important;
             color: #ffffff !important;
             width: 15px !important;
             height: 15px !important;
+            opacity: 0.9 !important;
+          }
+          .rpv-core__button:disabled svg {
+            opacity: 0.4 !important;
+          }
+          .rpv-core__button svg path,
+          .rpv-core__button svg rect,
+          .rpv-core__button svg polygon,
+          .rpv-core__button svg circle {
+            fill: #ffffff !important;
+          }
+          /* Correct for stroke-based SVG icons */
+          .rpv-core__button svg path[stroke],
+          .rpv-core__button svg circle[stroke],
+          .rpv-core__button svg line[stroke] {
+            stroke: #ffffff !important;
+            fill: none !important;
           }
           
           /* Style the page number textbox */
@@ -119,8 +137,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
           }
         `}} />
 
-        {/* ChatGPT / Claude Style Dark Toolbar (slightly darker than buttons) */}
-        <div className="shrink-0 h-14 flex items-center border-b border-white/10 bg-[#161618] px-4 text-white z-10 select-none">
+        {/* ChatGPT / Claude Style Dark Toolbar with Tailwind selector overrides */}
+        <div className="shrink-0 h-14 flex items-center border-b border-white/10 bg-[#161618] px-4 text-white z-10 select-none [&_*]:text-white [&_button]:text-white [&_button]:bg-zinc-800 [&_button]:border-zinc-600 [&_button:hover]:bg-zinc-700 [&_svg]:text-white [&_svg]:stroke-white [&_input]:text-white [&_input]:bg-zinc-800 [&_input]:border-zinc-600">
           <Toolbar>
             {(slots: ToolbarSlot) => {
               const {
