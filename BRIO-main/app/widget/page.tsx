@@ -3,8 +3,7 @@ export default function WidgetPage() {
     <html>
       <body>
         <div style={{ padding: 20, background: "white", color: "black" }}>
-          Widget route working
-        </div>
+          Widget route working live        </div>
       </body>
     </html>
   );
