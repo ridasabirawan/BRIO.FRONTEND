@@ -322,11 +322,19 @@ export async function userDetails(userId: string) {
       userId: users.id,
       noOfTokens: users.noOfTokens,
       noOfChatbots: users.noOfChatbots,
-      noOfKnowledgeSources: users.noOfKnowledgeSources,
+      noOfKnowledgeSources: sql<number>`cast(count(distinct ${kbSources.id}) as integer)`,
       planName: subscriptions.planName,
     })
     .from(users)
     .leftJoin(subscriptions, eq(users.id, subscriptions.userId))
-    .where(eq(users.id, userId));
+    .leftJoin(kbSources, eq(users.id, kbSources.userId))
+    .where(eq(users.id, userId))
+    .groupBy(
+      users.id,
+      users.noOfTokens,
+      users.noOfChatbots,
+      subscriptions.planName
+    );
+
   return result;
 }
