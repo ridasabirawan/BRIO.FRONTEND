@@ -13,6 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { deleteSource } from "@/drizzle/queries/admin";
 import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface DeleteSourceDialogProps {
   source: {
@@ -30,6 +31,7 @@ export function DeleteSourceDialog({
   open,
   onOpenChange,
 }: DeleteSourceDialogProps) {
+  const queryClient = useQueryClient();
   const [sendEmail, setSendEmail] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,10 +40,18 @@ export function DeleteSourceDialog({
   const handleDelete = async () => {
     try {
       setIsLoading(true);
+
       await deleteSource(source.id, sendEmail);
+
+      await queryClient.invalidateQueries({ queryKey: ["usage"] });
+      await queryClient.invalidateQueries({ queryKey: ["sources"] });
+      await queryClient.invalidateQueries({ queryKey: ["chatbots"] });
+      await queryClient.invalidateQueries({ queryKey: ["userDetails"] });
+
       toast.success("Source deleted successfully");
       onOpenChange(false);
     } catch (error) {
+      console.error("Failed to delete source:", error);
       toast.error("Failed to delete source");
     } finally {
       setIsLoading(false);

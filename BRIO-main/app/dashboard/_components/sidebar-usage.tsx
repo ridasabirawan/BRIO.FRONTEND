@@ -24,6 +24,7 @@ export default function SidebarUsageComponent({ userId }: UsageProps) {
     queryFn: () => userDetails(userId),
     staleTime: 0,
     refetchOnWindowFocus: true,
+    refetchInterval: 2000,
   });
 
   if (error) {
