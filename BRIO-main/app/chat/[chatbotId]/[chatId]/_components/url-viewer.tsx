@@ -47,7 +47,7 @@ export default function UrlViewer({ url }: { url: string }) {
 
   if (state === "checking") {
     return (
-      <div className="flex h-[90vh] w-full items-center justify-center bg-gray-100 dark:bg-neutral-900">
+      <div className="flex h-full w-full items-center justify-center bg-gray-100 dark:bg-neutral-900">
         <div className="flex flex-col items-center gap-3 text-muted-foreground">
           <Loader2 className="h-6 w-6 animate-spin" />
           <p className="text-sm">Loading website preview…</p>
@@ -62,8 +62,7 @@ export default function UrlViewer({ url }: { url: string }) {
         src={url}
         width="100%"
         height="100%"
-        style={{ minHeight: "90vh" }}
-        className="bg-white"
+        className="bg-white w-full h-full"
         title={`Preview of ${hostname}`}
         sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
       />
@@ -72,7 +71,7 @@ export default function UrlViewer({ url }: { url: string }) {
 
   // Blocked fallback card
   return (
-    <div className="flex h-[90vh] w-full items-center justify-center bg-gray-50 p-4 dark:bg-neutral-900">
+    <div className="flex h-full w-full items-center justify-center bg-gray-50 p-4 dark:bg-neutral-900">
       <div className="max-w-md rounded-xl border bg-card p-8 text-center shadow-sm">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/15">
           <ShieldAlert className="h-7 w-7 text-amber-500" />

@@ -33,14 +33,16 @@ export default async function Page(props: {
 
   return (
     <SourceProvider initialSource={sources[0]}>
-      <div>
+      <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-50 dark:bg-zinc-950">
         <Header sources={sources} chatbotId={params.chatbotId} />
-        <DocumentClient
-          userId={session?.user.id || ""}
-          userImage={userImage}
-          chatbotId={params.chatbotId}
-          chatId={params.chatId}
-        />
+        <main className="flex-1 min-h-0 relative">
+          <DocumentClient
+            userId={session?.user.id || ""}
+            userImage={userImage}
+            chatbotId={params.chatbotId}
+            chatId={params.chatId}
+          />
+        </main>
       </div>
     </SourceProvider>
   );
