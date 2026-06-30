@@ -27,7 +27,7 @@ Brio.chat is SaaS platform that leverages the Retrieval-Augmented Generation (RA
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/umerarif01/zova.git
+   git clone https://github.com/ridasabirawan/BRIO.FRONTEND
    cd zova
    ```
 
@@ -55,7 +55,7 @@ Brio.chat is SaaS platform that leverages the Retrieval-Augmented Generation (RA
 
 6. Run the ingest backend:
 
-   Clone the ingest backend from [here](https://github.com/umerarif01/zova-backend) and follow the instructions to run it.
+   Clone the ingest backend from [here](https://github.com/ridasabirawan/BRIO.CHAT) and follow the instructions to run it.
 
 ## Contributing
 
