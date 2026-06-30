@@ -361,3 +361,11 @@ html.dark {
     scroll-behavior: auto;
   }
 }
+
+.dashboard-bg {
+  background-image: url("/brio_bg_light_dash.png");
+}
+
+html.dark .dashboard-bg {
+  background-image: url("/brio_bg_dark_dash.png");
+}
