@@ -23,22 +23,26 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
       <div className="w-full h-full min-h-0 flex flex-col overflow-hidden rounded-2xl bg-[#111113]">
         {/* Style Overrides for React PDF Viewer components inside dark theme */}
         <style dangerouslySetInnerHTML={{__html: `
-          /* Clean up core buttons to look rounded and premium */
+          /* Clean up core buttons to look rounded, prominent and dark-themed */
           .rpv-core__button {
-            background-color: transparent !important;
-            color: #d4d4d8 !important;
-            border: none !important;
-            border-radius: 6px !important;
-            padding: 6px !important;
-            transition: all 0.2s ease !important;
+            background-color: #27272a !important; /* zinc-800 */
+            color: #ffffff !important;
+            border: 1px solid #52525b !important; /* zinc-600 */
+            border-radius: 10px !important;
+            padding: 8px 12px !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
             cursor: pointer !important;
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            height: 34px !important;
           }
           .rpv-core__button:hover {
-            background-color: rgba(255, 255, 255, 0.08) !important;
+            background-color: #3f3f46 !important; /* zinc-700 */
             color: #ffffff !important;
+            border-color: #71717a !important; /* zinc-500 */
           }
           .rpv-core__button:disabled {
             opacity: 0.25 !important;
@@ -46,39 +50,39 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
           }
           .rpv-core__button svg {
             fill: currentColor !important;
-            color: inherit !important;
-            width: 16px !important;
-            height: 16px !important;
+            color: #ffffff !important;
+            width: 15px !important;
+            height: 15px !important;
           }
           
           /* Style the page number textbox */
           .rpv-core__textbox {
-            background-color: rgba(255, 255, 255, 0.06) !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            background-color: #27272a !important; /* zinc-800 */
+            border: 1px solid #52525b !important; /* zinc-600 */
             color: #ffffff !important;
-            border-radius: 6px !important;
-            padding: 2px 6px !important;
+            border-radius: 10px !important;
+            padding: 6px 10px !important;
             text-align: center !important;
-            font-size: 12px !important;
+            font-size: 13px !important;
             font-weight: 500 !important;
-            width: 36px !important;
-            height: 24px !important;
-            transition: all 0.2s ease !important;
+            width: 44px !important;
+            height: 34px !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           }
           .rpv-core__textbox:focus {
             outline: none !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            background-color: rgba(255, 255, 255, 0.12) !important;
+            border-color: #a1a1aa !important;
+            background-color: #2e2e33 !important;
           }
 
           /* Style the Zoom Dropdown Menu Popover */
           .rpv-core__popover-body {
-            background-color: #1e1e1e !important;
+            background-color: #18181b !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 8px !important;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+            border-radius: 10px !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
             color: #ffffff !important;
-            padding: 4px !important;
+            padding: 6px !important;
             z-index: 50 !important;
           }
           .rpv-core__menu-item {
@@ -98,8 +102,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
           /* Center pages container, remove margins, and paint canvas */
           .rpv-core__inner-pages {
             background-color: #0f0f11 !important;
-            padding-top: 16px !important;
-            padding-bottom: 16px !important;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
@@ -115,8 +119,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
           }
         `}} />
 
-        {/* ChatGPT / Claude Style Dark Toolbar */}
-        <div className="shrink-0 h-12 flex items-center border-b border-white/10 bg-[#1e1e1e] px-4 text-white z-10 select-none">
+        {/* ChatGPT / Claude Style Dark Toolbar (slightly darker than buttons) */}
+        <div className="shrink-0 h-14 flex items-center border-b border-white/10 bg-[#161618] px-4 text-white z-10 select-none">
           <Toolbar>
             {(slots: ToolbarSlot) => {
               const {
@@ -133,9 +137,9 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
               return (
                 <div className="flex items-center justify-between w-full">
                   {/* Page Navigation Area */}
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <GoToPreviousPage />
-                    <div className="flex items-center gap-1.5 text-zinc-300 text-xs px-1">
+                    <div className="flex items-center gap-2 text-zinc-300 text-xs px-1">
                       <CurrentPageInput />
                       <span className="text-white/30 font-light">/</span>
                       <span className="text-white/80 font-medium min-w-4 text-center">
@@ -146,11 +150,9 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
                   </div>
 
                   {/* Zoom Controls Area */}
-                  <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-lg p-0.5">
+                  <div className="flex items-center gap-2">
                     <ZoomOut />
-                    <div className="text-zinc-300 font-medium text-xs min-w-16 flex justify-center">
-                      <Zoom />
-                    </div>
+                    <Zoom />
                     <ZoomIn />
                   </div>
 
