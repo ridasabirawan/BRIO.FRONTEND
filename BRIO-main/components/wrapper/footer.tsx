@@ -11,7 +11,7 @@ export default function Footer() {
     reset,
   } = useForm();
 
-  const onSubmit = async (data: any) => {};
+  const onSubmit = async (data: any) => { };
   return (
     <footer className="border-t bg-transparent dark:bg-black/40 backdrop-blur-sm">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -28,7 +28,7 @@ export default function Footer() {
                 </p>
               </div>
               <a
-                href="https://github.com/umerarif01/zova"
+                href="https://github.com/ridasabirawan/BRIO.FRONTEND"
                 target="_blank"
                 rel="noopener noreferrer"
               >
